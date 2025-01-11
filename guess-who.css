@@ -102,9 +102,10 @@ body {
 }
 
 .character.out {
-    opacity: 0.5; /* Csökkentett átlátszóság */
-    filter: grayscale(100%); /* Szürkeárnyalatos */
-    pointer-events: none; /* Nem kattintható */
+    opacity: 0.5;
+    filter: grayscale(100%);
+    pointer-events: auto; /* Changed from none to auto to allow clicking */
+    transition: opacity 0.3s ease, filter 0.3s ease; /* Add smooth transition */
 }
 
 .reset-button {
@@ -146,4 +147,18 @@ body {
 
 .menu-items li.region-header:hover {
     background-color: #3c3c3c;
+}
+
+.selected-character {
+    position: absolute;
+    top: 10px;
+    left: 220px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+}
+
+.selected-character span {
+    font-style: italic;
 }
