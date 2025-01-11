@@ -7,14 +7,19 @@
     <link rel="stylesheet" href="guess-who.css">
 </head>
 <body>
-    <h1>Guess Who? - Genshin Impact<i> - beta</i></h1>
-
-    <!-- Visszaállítás gomb -->
-    <button class="reset-button" onclick="resetCharacters()">Reset</button>
-    <!-- Összes karakter törlése gomb -->
-    <button class="clear-button" onclick="clearAllCharacters()">Clear All</button>
-    <!-- Kiválasztott karakter megjelenítése -->
-    <div class="selected-character">Selected: <span id="selectedCharacter">None</span></div>
+    <div class="header">
+        <div class="controls-container">
+            <div class="controls">
+                <!-- Visszaállítás gomb -->
+                <button class="reset-button" onclick="resetCharacters()">Reset</button>
+                <!-- Összes karakter törlése gomb -->
+                <button class="clear-button" onclick="clearAllCharacters()">Clear All</button>
+            </div>
+            <!-- Kiválasztott karakter megjelenítése -->
+            <div class="selected-character">Selected: <span id="selectedCharacter">None</span></div>
+        </div>
+        <h1>Guess Who? - Genshin Impact<i> - beta</i></h1>
+    </div>
 
     <!-- Hamburger menü -->
     <div class="menu">
