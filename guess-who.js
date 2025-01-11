@@ -235,13 +235,20 @@ function populateSubMenu(menuId) {
     updateMenuItems();
 }
 
-  function toggleCharacter(characterName) {
+// Add new selectCharacter function
+function selectCharacter(characterName) {
+    const selectedSpan = document.getElementById('selectedCharacter');
+    selectedSpan.textContent = characterName;
+}
+
+// Update toggleCharacter function
+function toggleCharacter(characterName) {
     let character = null;
     for (const category in characters) {
-        if (Array.isArray(characters[category])){ // Ellenőrizzük, hogy tömb-e
+        if (Array.isArray(characters[category])) {
             character = characters[category].find(c => c.name === characterName);
-            if (character) break; // Megállítjuk a keresést, ha megtaláltuk a karaktert
-        } else if (typeof characters[category] === 'object') { //Ha objektum (regions)
+            if (character) break;
+        } else if (typeof characters[category] === 'object') {
             for (const region in characters[category]) {
                 character = characters[category][region].find(c => c.name === characterName);
                 if (character) break;
@@ -252,7 +259,7 @@ function populateSubMenu(menuId) {
 
     if (!character) {
         console.error("Nem található karakter ezzel a névvel: " + characterName);
-        return; // Kilépünk a függvényből, ha nem találjuk a karaktert
+        return;
     }
 
     const board = document.getElementById('board');
@@ -276,6 +283,12 @@ function populateSubMenu(menuId) {
 
         characterDiv.classList.add('visible');
         characterDiv.onclick = () => toggleOutCharacter(characterName);
+        
+        // Add right-click event listener
+        characterDiv.addEventListener('contextmenu', (e) => {
+            e.preventDefault(); // Prevent default context menu
+            selectCharacter(characterName);
+        });
     } else {
         characterDiv.remove();
     }
@@ -287,6 +300,9 @@ function toggleOutCharacter(characterName) {
     const characterDiv = document.getElementById(characterName);
     if (characterDiv.classList.contains('out')) {
         characterDiv.classList.remove('out');
+        characterDiv.style.opacity = '1';  // Reset opacity
+        characterDiv.style.filter = 'none';  // Reset grayscale
+        characterDiv.style.pointerEvents = 'auto';  // Enable clicking
     } else {
         characterDiv.classList.add('out');
     }
