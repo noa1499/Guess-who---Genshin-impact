@@ -164,7 +164,6 @@ function toggleMenu() {
     
     if (menu.style.display === 'block') {
         menu.style.display = 'none';
-        // Bezárjuk az összes almenüt
         subMenus.forEach(subMenu => {
             subMenu.style.display = 'none';
         });
@@ -173,21 +172,19 @@ function toggleMenu() {
     }
 }
 
-// Almenü váltása
 function toggleSubMenu(menuId) {
     const subMenu = document.getElementById(menuId);
     subMenu.style.display = subMenu.style.display === 'block' ? 'none' : 'block';
     if (subMenu.style.display === 'block') {
-        populateSubMenu(menuId);  // Kategória karaktereinek betöltése
+        populateSubMenu(menuId);
     }
 }
 
-// Kategória karaktereinek megjelenítése
 function populateSubMenu(menuId) {
     const subMenu = document.getElementById(menuId);
     subMenu.innerHTML = '';
 
-    if (menuId !== 'regions' && menuId !== 'visions') {
+    if (['all', 'mondstadt', 'liyue', 'inazuma', 'sumeru', 'fontaine', 'natlan', 'anemo', 'geo', 'electro', 'dendro', 'hydro', 'pyro', 'cryo'].includes(menuId)) {
         const allButton = document.createElement('li');
         allButton.classList.add('all-button');
         allButton.textContent = 'All';
@@ -209,39 +206,25 @@ function populateSubMenu(menuId) {
             categorySubMenu.classList.add('sub-menu', 'region-submenu');
             subMenu.appendChild(categorySubMenu);
         }
-    } else if (['mondstadt', 'liyue', 'inazuma', 'sumeru', 'fontaine', 'natlan', 
-                'anemo', 'geo', 'electro', 'dendro', 'hydro', 'pyro', 'cryo'].includes(menuId)) {
-        const parentCategory = ['mondstadt', 'liyue', 'inazuma', 'sumeru', 'fontaine', 'natlan'].includes(menuId) 
-            ? 'regions' : 'visions';
-        const categoryCharacters = characters[parentCategory][menuId];
+    } else {
+        let categoryCharacters;
+        if (menuId === 'all') {
+            categoryCharacters = characters.all;
+        } else {
+            const parentCategory = ['mondstadt', 'liyue', 'inazuma', 'sumeru', 'fontaine', 'natlan'].includes(menuId) ? 'regions' : 'visions';
+            categoryCharacters = characters[parentCategory][menuId];
+        }
         categoryCharacters.forEach(character => {
             const listItem = document.createElement('li');
             listItem.textContent = character.name;
             listItem.onclick = () => toggleCharacter(character.name);
             subMenu.appendChild(listItem);
         });
-    } else {
-        const category = characters[menuId];
-        if (Array.isArray(category)) {
-            category.forEach(character => {
-                const listItem = document.createElement('li');
-                listItem.textContent = character.name;
-                listItem.onclick = () => toggleCharacter(character.name);
-                subMenu.appendChild(listItem);
-            });
-        }
     }
 
     updateMenuItems();
 }
 
-// Add new selectCharacter function
-function selectCharacter(characterName) {
-    const selectedSpan = document.getElementById('selectedCharacter');
-    selectedSpan.textContent = characterName;
-}
-
-// Update toggleCharacter function
 function toggleCharacter(characterName) {
     let character = null;
     for (const category in characters) {
@@ -269,24 +252,23 @@ function toggleCharacter(characterName) {
         characterDiv = document.createElement('div');
         characterDiv.classList.add('character');
         characterDiv.id = characterName;
-
+    
         const img = document.createElement('img');
         img.src = character.image;
         img.alt = character.name;
-
+    
         const name = document.createElement('p');
         name.textContent = character.name;
-
+    
         characterDiv.appendChild(img);
         characterDiv.appendChild(name);
         board.appendChild(characterDiv);
-
+    
         characterDiv.classList.add('visible');
         characterDiv.onclick = () => toggleOutCharacter(characterName);
         
-        // Add right-click event listener
         characterDiv.addEventListener('contextmenu', (e) => {
-            e.preventDefault(); // Prevent default context menu
+            e.preventDefault();
             selectCharacter(characterName);
         });
     } else {
@@ -298,23 +280,21 @@ function toggleCharacter(characterName) {
 
 function toggleOutCharacter(characterName) {
     const characterDiv = document.getElementById(characterName);
-    if (characterDiv.classList.contains('out')) {
-        characterDiv.classList.remove('out');
-        characterDiv.style.opacity = '1';  // Reset opacity
-        characterDiv.style.filter = 'none';  // Reset grayscale
-        characterDiv.style.pointerEvents = 'auto';  // Enable clicking
-    } else {
-        characterDiv.classList.add('out');
-    }
+    if (!characterDiv) return;
+    characterDiv.classList.toggle('out');
+}
+
+function selectCharacter(characterName) {
+    const selectedSpan = document.getElementById('selectedCharacter');
+    selectedSpan.textContent = characterName;
 }
 
 function updateMenuItems() {
-    const visibleCharacters = document.querySelectorAll('.character');  // Changed from '.character.visible'
+    const visibleCharacters = document.querySelectorAll('.character');
     const menuItems = document.querySelectorAll('#menu-items li');
 
     menuItems.forEach(item => {
         const characterName = item.textContent.trim();
-        // Check if character exists on the board
         const isOnList = Array.from(visibleCharacters).some(character => 
             character.querySelector('p').textContent === characterName
         );
@@ -327,15 +307,12 @@ function updateMenuItems() {
     });
 }
 
-// Eseménykezelő, hogy a menü bezáródjon, ha a felhasználó a menün kívül kattint
 document.addEventListener('click', function(event) {
     const menu = document.getElementById('menu-items');
     const hamburger = document.querySelector('.hamburger');
     
-    // Ha nem a menü vagy a hamburger ikon lett kattintva, akkor zárjuk be
     if (!menu.contains(event.target) && event.target !== hamburger) {
         menu.style.display = 'none';
-        // Bezárjuk az összes almenüt
         const subMenus = document.querySelectorAll('.sub-menu');
         subMenus.forEach(subMenu => {
             subMenu.style.display = 'none';
