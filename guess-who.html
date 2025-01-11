@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Who? - Genshin Impact version</title>
+    <link rel="stylesheet" href="guess-who.css">
+</head>
+<body>
+    <h1>Guess Who? - Genshin Impact<i> - beta</i></h1>
+
+    <!-- Visszaállítás gomb -->
+    <button class="reset-button" onclick="resetCharacters()">Reset</button>
+    <!-- Összes karakter törlése gomb -->
+    <button class="clear-button" onclick="clearAllCharacters()">Clear All</button>
+
+    <!-- Hamburger menü -->
+    <div class="menu">
+        <div class="hamburger" onclick="toggleMenu()">
+            &#9776;
+        </div>
+        <div id="menu-items" class="menu-items">
+            <ul>
+                <li onclick="toggleSubMenu('all')">All Characters</li>
+                <ul id="all" class="sub-menu">
+                    <!-- Az "All" gomb és a karakterek itt jelennek meg -->
+                </ul>
+                <li onclick="toggleSubMenu('regions')">Regions</li>
+                <ul id="regions" class="sub-menu">
+                    <li onclick="toggleSubMenu('mondstadt')">Mondstadt</li>
+                    <ul id="mondstadt" class="sub-menu">
+                        <!-- Mondstadt karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('liyue')">Liyue</li>
+                    <ul id="liyue" class="sub-menu">
+                        <!-- Liyue karakterek itt jelennek meg -->
+                    </ul>
+                </ul>
+                <li onclick="toggleSubMenu('visions')">Visions</li>
+                <ul id="visions" class="sub-menu">
+                    <!-- Az "All" gomb és a víziók itt jelennek meg -->
+                </ul>
+            </ul>
+        </div>
+    </div>
+
+    <div id="board">
+        <!-- Itt jelennek meg majd a karakterek -->
+    </div>
+
+    <script src="guess-who.js"></script>
+</body>
+</html>
