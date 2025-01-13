@@ -1,45 +1,46 @@
+/* Alapvető stílusok */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-image: url('background.png'); /* Add the path to your background image */
-    background-size: cover; /* Ensure the background covers the entire page */
-    background-position: center; /* Center the background image */
-    background-attachment: fixed; /* Ensure the background stays fixed when scrolling */
-    background-repeat: no-repeat; /* Prevent the background from repeating */
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 .header {
     display: flex;
-    justify-content: flex-start; /* Align items to the start (left) */
+    justify-content: flex-start;
     align-items: center;
     margin-top: 20px;
     padding: 0 20px;
 }
 
 h1 {
-    background-color: rgba(0, 0, 0, 0.7); /* Black background with 70% opacity */
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    padding: 10px; /* Reduced padding */
+    padding: 10px;
     border-radius: 10px;
     display: inline-block;
     margin-bottom: 20px;
     text-align: center;
-    font-size: 24px; /* Smaller font size */
-    max-width: 600px; /* Maximum width */
-    margin-left: 350px; /* Increase left margin */
+    font-size: 24px;
+    max-width: 600px;
+    margin-left: 350px;
 }
 
 h2 {
-    background-color: rgba(0, 0, 0, 0.7); /* Black background with 70% opacity */
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    padding: 10px; /* Reduced padding */
+    padding: 10px;
     border-radius: 10px;
     display: inline-block;
     margin-bottom: 20px;
     text-align: center;
-    font-size: 24px; /* Smaller font size */
-    max-width: 600px; /* Maximum width */
-    margin-left: 220px; /* Increase left margin */
+    font-size: 24px;
+    max-width: 600px;
+    margin-left: 220px;
 }
 
 .controls-container {
@@ -52,7 +53,7 @@ h2 {
     display: flex;
     gap: 10px;
     align-items: center;
-    margin-bottom: 10px; /* Add some space below the controls */
+    margin-bottom: 10px;
 }
 
 .reset-button {
@@ -86,7 +87,7 @@ h2 {
     background-color: #333;
     color: white;
     border-radius: 5px;
-    margin-bottom: 20px; /* Add some space below the selected character */
+    margin-bottom: 20px;
 }
 
 .selected-character span {
@@ -104,7 +105,7 @@ h2 {
 .hamburger {
     font-size: 30px;
     cursor: pointer;
-    margin-right: 10px; /* Add some space between the hamburger and help button */
+    margin-right: 10px;
 }
 
 .help-button {
@@ -145,9 +146,42 @@ h2 {
 .sub-menu {
     display: none;
     padding-left: 20px;
-    background-color: #444; /* Háttérszín az almenükhöz */
-    margin-top: 10px; /* Margó az almenük tetején */
-    border-radius: 5px; /* Lekerekített sarkok az almenükhöz */
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.sub-menu {
+    background-color: #1e1d1d; /* Sötétebb szürke szín */
+    color: white !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.sub-menu li:hover {
+    background-color: #333333 !important; /* Világosabb szürke szín */
+}
+
+.sub-menu li {
+    background-color: #252525; /* Sötétebb szürke szín */
+    color: white !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+/* Világosabb stílusok a főmenü gombokhoz */
+.main-menu-item {
+    background-color: #444; /* Világosabb szürke szín */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.main-menu-item:hover {
+    background-color: #666; /* Még világosabb szürke szín */
 }
 
 .all-button {
@@ -157,9 +191,10 @@ h2 {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 15px;
-    display: block;  /* Add this to ensure consistent spacing */
-    width: auto;     /* Add this to ensure consistent width */
+    display: block;
+    width: auto;
 }
+
 .all-button:hover {
     background-color: #777;
 }
@@ -176,7 +211,7 @@ h2 {
 .character {
     border: 2px solid #000;
     padding: 10px;
-    background-color: rgba(240, 240, 240, 0.6); /* Light grey with 60% opacity */
+    background-color: rgba(240, 240, 240, 0.6);
     cursor: pointer;
     visibility: hidden;
     transition: opacity 0.3s ease, filter 0.3s ease;
@@ -194,11 +229,11 @@ h2 {
 }
 
 .character.visible {
-    visibility: visible; /* Ha hozzá van adva, láthatóvá válik */
+    visibility: visible;
 }
 
 .menu-items li.on-list {
-    background-color: #4CAF50; /* Zöld háttérszín, ha a karakter rajta van a listán */
+    background-color: #4CAF50 !important;
     color: white;
 }
 
@@ -208,7 +243,7 @@ h2 {
 }
 
 .help-container {
-    background-color: rgba(0, 0, 0, 0.7); /* Black background with 70% opacity */
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 20px;
     border-radius: 10px;
