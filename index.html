@@ -5,23 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guess Who? - Genshin Impact version</title>
     <link rel="stylesheet" href="guess-who.css">
+    <script src="guess-who.js" defer></script>
 </head>
 <body>
     <div class="header">
         <div class="controls-container">
             <div class="controls">
-                <!-- Visszaállítás gomb -->
                 <button class="reset-button" onclick="resetCharacters()">Reset</button>
-                <!-- Összes karakter törlése gomb -->
                 <button class="clear-button" onclick="clearAllCharacters()">Clear All</button>
             </div>
-            <!-- Kiválasztott karakter megjelenítése -->
             <div class="selected-character">Selected: <span id="selectedCharacter">None</span></div>
         </div>
-        <h1>Guess Who? - Genshin Impact<i> - beta</i></h1>
+        <h1>Guess Who? - Genshin Impact</h1>
     </div>
 
-    <!-- Hamburger menü és kérdőjeles gomb -->
     <div class="menu">
         <div class="hamburger" onclick="toggleMenu()">
             &#9776;
@@ -31,11 +28,11 @@
         </div>
         <div id="menu-items" class="menu-items">
             <ul>
-                <li onclick="toggleSubMenu('all')">All Characters</li>
+                <li class="main-menu-item" onclick="toggleSubMenu('all')">All Characters</li>
                 <ul id="all" class="sub-menu">
                     <!-- Az "All" gomb és a karakterek itt jelennek meg -->
                 </ul>
-                <li onclick="toggleSubMenu('regions')">Regions</li>
+                <li class="main-menu-item" onclick="toggleSubMenu('regions')">Regions</li>
                 <ul id="regions" class="sub-menu">
                     <li onclick="toggleSubMenu('mondstadt')">Mondstadt</li>
                     <ul id="mondstadt" class="sub-menu">
@@ -45,10 +42,87 @@
                     <ul id="liyue" class="sub-menu">
                         <!-- Liyue karakterek itt jelennek meg -->
                     </ul>
+                    <li onclick="toggleSubMenu('inazuma')">Inazuma</li>
+                    <ul id="inazuma" class="sub-menu">
+                        <!-- Inazuma karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('sumeru')">Sumeru</li>
+                    <ul id="sumeru" class="sub-menu">
+                        <!-- Sumeru karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('fontaine')">Fontaine</li>
+                    <ul id="fontaine" class="sub-menu">
+                        <!-- Fontaine karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('natlan')">Natlan</li>
+                    <ul id="natlan" class="sub-menu">
+                        <!-- Natlan karakterek itt jelennek meg -->
+                    </ul>
                 </ul>
-                <li onclick="toggleSubMenu('visions')">Visions</li>
+                <li class="main-menu-item" onclick="toggleSubMenu('visions')">Visions</li>
                 <ul id="visions" class="sub-menu">
-                    <!-- Az "All" gomb és a víziók itt jelennek meg -->
+                    <li onclick="toggleSubMenu('anemo')">Anemo</li>
+                    <ul id="anemo" class="sub-menu">
+                        <!-- Anemo karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('geo')">Geo</li>
+                    <ul id="geo" class="sub-menu">
+                        <!-- Geo karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('electro')">Electro</li>
+                    <ul id="electro" class="sub-menu">
+                        <!-- Electro karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('dendro')">Dendro</li>
+                    <ul id="dendro" class="sub-menu">
+                        <!-- Dendro karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('hydro')">Hydro</li>
+                    <ul id="hydro" class="sub-menu">
+                        <!-- Hydro karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('pyro')">Pyro</li>
+                    <ul id="pyro" class="sub-menu">
+                        <!-- Pyro karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('cryo')">Cryo</li>
+                    <ul id="cryo" class="sub-menu">
+                        <!-- Cryo karakterek itt jelennek meg -->
+                    </ul>
+                </ul>
+                <li class="main-menu-item" onclick="toggleSubMenu('weapons')">Weapons</li>
+                <ul id="weapons" class="sub-menu">
+                    <li onclick="toggleSubMenu('sword')">Sword</li>
+                    <ul id="sword" class="sub-menu">
+                        <!-- Sword karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('claymore')">Claymore</li>
+                    <ul id="claymore" class="sub-menu">
+                        <!-- Claymore karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('polearm')">Polearm</li>
+                    <ul id="polearm" class="sub-menu">
+                        <!-- Polearm karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('bow')">Bow</li>
+                    <ul id="bow" class="sub-menu">
+                        <!-- Bow karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('catalyst')">Catalyst</li>
+                    <ul id="catalyst" class="sub-menu">
+                        <!-- Catalyst karakterek itt jelennek meg -->
+                    </ul>
+                </ul>
+                <li class="main-menu-item" onclick="toggleSubMenu('stars')">Stars</li>
+                <ul id="stars" class="sub-menu">
+                    <li onclick="toggleSubMenu('four')">Four</li>
+                    <ul id="four" class="sub-menu">
+                        <!-- Four karakterek itt jelennek meg -->
+                    </ul>
+                    <li onclick="toggleSubMenu('five')">Five</li>
+                    <ul id="five" class="sub-menu">
+                        <!-- Five karakterek itt jelennek meg -->
+                    </ul>
                 </ul>
             </ul>
         </div>
@@ -58,11 +132,10 @@
         <!-- Itt jelennek meg majd a karakterek -->
     </div>
 
-    <script src="guess-who.js"></script>
     <script>
-        function openHelpPage() {
-            window.open('help.html', '_blank');
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('JavaScript működik!');
+        });
     </script>
 </body>
 </html>
