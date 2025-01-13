@@ -765,6 +765,10 @@ function updateMenuItems() {
     });
 }
 
+function openHelpPage() {
+    window.open('help.html', '_blank');
+}
+
 document.addEventListener('click', function(event) {
     const menu = document.getElementById('menu-items');
     const hamburger = document.querySelector('.hamburger');
